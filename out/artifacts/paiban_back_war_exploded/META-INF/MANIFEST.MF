@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: paiban
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: youkaiyu
+Implementation-Vendor-Id: com.example
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8
+Main-Class: ${start-class}
+
