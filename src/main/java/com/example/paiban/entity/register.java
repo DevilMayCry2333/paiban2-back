@@ -7,6 +7,8 @@ public class register {
     private int gid;
     private String role;
     private String token;
+    private int retry;
+    private int Mylock;
 
     public String getUsername() {
         return username;
@@ -54,5 +56,21 @@ public class register {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public int getRetry() {
+        return retry;
+    }
+
+    public void setRetry(int retry) {
+        this.retry = retry;
+    }
+
+    public int getMylock() {
+        return Mylock;
+    }
+
+    public void setMylock(int mylock) {
+        Mylock = mylock;
     }
 }

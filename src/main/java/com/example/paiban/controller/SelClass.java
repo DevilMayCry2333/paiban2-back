@@ -48,4 +48,18 @@ public class SelClass {
         return jsonObject;
     }
 
+    @RequestMapping(value = "/cancelMorClass")
+    public JSONObject cancelMorClass(@RequestParam("id") String id,@RequestParam("username") String username,@RequestParam("today") String today){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Res",selClassSer.cancelMorClass(id,username,today));
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/cancelAftClass")
+    public JSONObject cancelAftClass(@RequestParam("id") String id,@RequestParam("username") String username,@RequestParam("today") String today){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Res",selClassSer.cancelAftClass(id,username,today));
+        return jsonObject;
+    }
+
 }

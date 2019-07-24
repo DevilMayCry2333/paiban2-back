@@ -24,12 +24,22 @@ public class Access {
         String md5 = new Md5Hash(username + password + System.currentTimeMillis()).toString();
         logger.info(md5);
         JSONObject jsonObject = new JSONObject();
-        if (accessSer.loginquery(username,password)){
-            accessSer.updateToken(md5,username);
-        }
 
-        jsonObject.put("Res",accessSer.loginquery(username,password));
-        jsonObject.put("Token",md5);
+        if(accessSer.queryRetry(username)>=5){
+            accessSer.updateLock(1,username);
+        }
+        //True Or False
+        if(accessSer.queryLock(username)!=1) {
+            if (accessSer.loginquery(username, password)) {
+                accessSer.updateToken(md5, username);
+                jsonObject.put("Token", md5);
+            } else {
+                accessSer.updateRetry(username);
+            }
+            jsonObject.put("Res", accessSer.loginquery(username, password));
+        }else {
+            jsonObject.put("Res","lock");
+        }
         return jsonObject;
 
     }

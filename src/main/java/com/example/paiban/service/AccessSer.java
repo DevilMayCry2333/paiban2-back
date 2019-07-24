@@ -13,6 +13,7 @@ public class AccessSer {
     public boolean loginquery(String username,String password){
 
         String md5 = new Md5Hash(password).toString();
+        System.out.println(md5);
         if(accessDao.loginquery(username).getPassword().equals(md5)){
             return true;
         }
@@ -29,5 +30,21 @@ public class AccessSer {
             return true;
         }
         return false;
+    }
+
+    public int queryLock(String username){
+        return accessDao.lockquery(username).getMylock();
+    }
+
+    public int queryRetry(String username){
+        return accessDao.retryquery(username).getRetry();
+    }
+
+    public boolean updateLock(int lock,String username){
+        return accessDao.updateLock(lock,username);
+    }
+
+    public boolean updateRetry(String username){
+        return accessDao.updateRetry(username);
     }
 }

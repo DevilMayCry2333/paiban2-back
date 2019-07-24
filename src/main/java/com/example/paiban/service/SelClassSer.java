@@ -75,4 +75,34 @@ public class SelClassSer {
         }
         return false;
     }
+
+    public boolean cancelMorClass(String id,String username,String today){
+        classdata cl = selClassDao.queryMorUserById(id);
+        String tmpUser = cl.getUserNameMor();
+        String []tmpSpilt = tmpUser.split(',' + username);
+        String tmp = "";
+        for (int i = 0; i < tmpSpilt.length; i++) {
+            tmp += tmpSpilt[i];
+        }
+        logger.info(tmp);
+        if(selClassDao.cancelleftSpaceMor(id)){
+            return selClassDao.updateMorClass(tmp,id);
+        }
+        return false;
+    }
+
+    public boolean cancelAftClass(String id,String username,String today){
+        classdata cll = selClassDao.queryAftUserById(id);
+        String tmpUser = cll.getUserNameAft();
+        String []tmpSpilt = tmpUser.split(',' + username);
+        String tmp = "";
+        for (int i = 0; i < tmpSpilt.length; i++) {
+            tmp += tmpSpilt[i];
+        }
+        logger.info(tmp);
+        if(selClassDao.cancelleftSpaceAft(id)){
+            return selClassDao.updateAftClass(tmp,id);
+        }
+        return false;
+    }
 }

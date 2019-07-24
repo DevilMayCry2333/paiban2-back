@@ -44,5 +44,12 @@ public interface SelClassDao {
     @Select("SELECT leftSpaceAft FROM classData WHERE Today = #{today}")
     classdata queryLeftAft(@Param("today") String today);
 
+    @Update("UPDATE classData SET leftSpaceMor = leftSpaceMor + 1 WHERE id= #{id}")
+    boolean cancelleftSpaceMor(@Param("id") String id);
+
+    @Update("UPDATE classData SET leftSpaceAft = leftSpaceAft + 1 WHERE id= #{id}")
+    boolean cancelleftSpaceAft(@Param("id") String id);
+
+
 
 }
