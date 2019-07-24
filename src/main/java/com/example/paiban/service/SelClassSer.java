@@ -46,6 +46,9 @@ public class SelClassSer {
     public JSONArray queryPhaseData(){
 
         ArrayList<phase> arrayList = selClassDao.queryPhaseData();
+        for (int i = 0; i < arrayList.size(); i++) {
+            arrayList.get(i).setText(arrayList.get(i).getPhase() + "-" + arrayList.get(i).getPhaseEnd());
+        }
 
         String ser = JSON.toJSONString(arrayList);
         return JSON.parseArray(ser);
@@ -104,5 +107,9 @@ public class SelClassSer {
             return selClassDao.updateAftClass(tmp,id);
         }
         return false;
+    }
+
+    public boolean delClass(){
+        return selClassDao.delClass();
     }
 }

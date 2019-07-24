@@ -2,6 +2,7 @@ package com.example.paiban.dao;
 
 import com.example.paiban.entity.classdata;
 import com.example.paiban.entity.phase;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -50,6 +51,8 @@ public interface SelClassDao {
     @Update("UPDATE classData SET leftSpaceAft = leftSpaceAft + 1 WHERE id= #{id}")
     boolean cancelleftSpaceAft(@Param("id") String id);
 
+    @Delete("DELETE FROM classData")
+    boolean delClass();
 
 
 }

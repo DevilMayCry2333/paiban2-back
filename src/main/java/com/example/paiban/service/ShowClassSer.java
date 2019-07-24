@@ -17,8 +17,7 @@ public class ShowClassSer {
     @Autowired
     private ShowClassDao showClassDao;
 
-    public JSONArray showClass(String departId){
-        ArrayList<classdata> arrayList = showClassDao.showclass(departId);
+    public static void calcEnd(ArrayList<classdata> arrayList){
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         for (int i = 0; i < arrayList.size(); i++) {
             try {
@@ -37,6 +36,12 @@ public class ShowClassSer {
             }
 
         }
+    }
+
+    public JSONArray showClass(String departId){
+        ArrayList<classdata> arrayList = showClassDao.showclass(departId);
+        this.calcEnd(arrayList);
+
         String ser = JSON.toJSONString(arrayList);
         return JSON.parseArray(ser);
 

@@ -62,4 +62,10 @@ public class SelClass {
         return jsonObject;
     }
 
+    @RequestMapping(value = "/delClass")
+    public String delClass(){
+        selClassSer.delClass();
+        return "清除成功! 请手动返回";
+    }
+
 }

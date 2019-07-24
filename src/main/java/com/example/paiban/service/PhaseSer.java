@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class PhaseSer {
     @Autowired
     private PhaseDao phaseDao;
 
-    public boolean insertPhase(String beginTime,int hour){
+    public boolean insertPhase(String beginTime,int hour) throws ParseException {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//可以方便地修改日期格式
         String initDate = dateFormat.format( now );
@@ -27,8 +28,17 @@ public class PhaseSer {
         String nextDate = dateFormat.format(next);
         logger.info(nextDate);
 
-        phaseDao.insertPhase(beginTime,hour,1,initDate,nextDate,"1");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        Date dateMor = sdf.parse(beginTime);
+        long afterMor = dateMor.getTime()/1000 + hour*3600;
+        dateMor.setTime(afterMor*1000);
+
+        phaseDao.insertPhase(beginTime,hour,1,nextDate,initDate,"1",sdf.format(dateMor));
 
         return true;
+    }
+
+    public boolean delPhase(){
+        return phaseDao.delPhase();
     }
 }

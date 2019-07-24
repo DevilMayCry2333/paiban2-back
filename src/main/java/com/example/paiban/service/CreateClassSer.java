@@ -1,8 +1,11 @@
 package com.example.paiban.service;
 
+import com.example.paiban.controller.Access;
 import com.example.paiban.dao.CreateClassDao;
 import com.example.paiban.dao.PhaseDao;
 import com.example.paiban.entity.phase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,8 @@ import java.util.Date;
 
 @Service
 public class CreateClassSer {
+
+    private static final Logger logger = LoggerFactory.getLogger(CreateClassSer.class);
     @Autowired
     private CreateClassDao createClassDao;
     @Autowired
@@ -28,6 +33,9 @@ public class CreateClassSer {
         Date initDate = dateFormat.parse(p1.getInitDate());
 
         boolean res = true;
+
+        logger.info(initDate.toString());
+
 
         long initTime = initDate.getTime()/1000;
 

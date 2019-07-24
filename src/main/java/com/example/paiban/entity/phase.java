@@ -5,7 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 public class phase {
     @JSONField(ordinal = 1)
     private int Id;
-    @JSONField(ordinal = 2,name = "text")
+    @JSONField(ordinal = 2)
     private String phase;
     @JSONField(ordinal = 3)
     private int departId;
@@ -21,6 +21,11 @@ public class phase {
     // 前端渲染需要用到的
     @JSONField(ordinal = 8)
     public String value = "phase";
+    @JSONField(ordinal = 9)
+    private String phaseEnd;
+
+    @JSONField(ordinal = 10,name = "text")
+    private String text;
 
 
     public int getId() {
@@ -77,5 +82,21 @@ public class phase {
 
     public void setPhaseId(int phaseId) {
         this.phaseId = phaseId;
+    }
+
+    public String getPhaseEnd() {
+        return phaseEnd;
+    }
+
+    public void setPhaseEnd(String phaseEnd) {
+        this.phaseEnd = phaseEnd;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
